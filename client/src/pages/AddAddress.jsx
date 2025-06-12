@@ -44,6 +44,7 @@ const AddAddress = () => {
     const onSubmitHandler = async(e) => {
         e.preventDefault()
         try {
+          console.log("Submitting address with userId:", user?._id);
           const { data } = await axios.post("/api/address/add", {
             address: { ...address, userId: user._id },
           });

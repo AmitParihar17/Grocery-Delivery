@@ -2,6 +2,8 @@ import jwt from "jsonwebtoken"
 
  const authSeller = async(req,res,next) => {
     const {sellerToken} = req.cookies;
+    console.log("REQ.COOKIE CONTENT:", req.cookies);
+
 
     if (!sellerToken) {
         return res.status(404).json({

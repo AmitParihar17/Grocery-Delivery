@@ -4,6 +4,8 @@ import Address from "../models/address.model.js";
 export const address = async (req, res) => {
   try {
     const { address } = req.body; // userId is inside here
+    console.log("Incoming address data:", req.body);
+
     await Address.create(address); // pass the full address object (with userId inside)
 
     res.status(200).json({
