@@ -36,21 +36,22 @@ export const sellerLogin = async (req,res) =>  {
 
  // Seller isAuth  : /api/seller/is-auth
 
- export const isSellerAuth = async(req,res) => {
-    try {
-        return res.status(200).json({
-            success : true,
-            message : "Authorized"
-        })
-
-    } catch (error) {
-        console.log(error.message);
-        return res.status(403).json({
-          success: false,
-          message: " Not Authorized",
-        });
-    }
- }
+ export const isSellerAuth = (req, res) => {
+   try {
+     return res.status(200).json({
+       success: true,
+       message: "Authorized",
+       seller: req.seller || null, // Optional: include token data if needed
+     });
+   } catch (error) {
+     console.error("isSellerAuth error:", error.message);
+     return res.status(403).json({
+       success: false,
+       message: "Not Authorized",
+     });
+   }
+ };
+  
 
  //Seller logout : api/seller/logout
 

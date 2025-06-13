@@ -23,20 +23,50 @@ export const address = async (req, res) => {
 
 //Get adress : /api/address/get
 
-export const getAddress = async (req,res) => {
+// export const getAddress = async (req,res) => {
+//   try {
+//     const { userId } = req.query;
+//     const addresses = await Address.find({userId})
+//     res.status(200).json({
+//         success : true,
+//         addresses
+//     })
+
+//   } catch (error) {
+//     console.log(error.message);
+//     res.status(501).json({
+//       success: false,
+//       message: error.message,
+//     })
+//   }
+// };
+
+
+export const getAddress = async (req, res) => {
   try {
     const { userId } = req.query;
-    const addresses = await Address.find({userId})
-    res.status(200).json({
-        success : true,
-        addresses
-    })
+    console.log("REQ QUERY:", req.query);
 
+
+    if (!userId) {
+      return res.status(400).json({
+        success: false,
+        message: "userId is required",
+      });
+    }
+
+    const addresses = await Address.find({ userId });
+
+    res.status(200).json({
+      success: true,
+      addresses,
+    });
   } catch (error) {
-    console.log(error.message);
-    res.status(501).json({
+    console.log("GET ADDRESS ERROR:", error.message);
+    res.status(500).json({
       success: false,
       message: error.message,
-    })
+    });
   }
 };
+
