@@ -11,7 +11,7 @@ const Contact = () => {
   const onSubmitHandler = async (e) => {
     try {
       e.preventDefault();
-      const { data } = await axios.post("http://localhost:4000/api/contact", {
+      const { data } = await axios.post("/api/contact", {
         name,
         email,
         message,
